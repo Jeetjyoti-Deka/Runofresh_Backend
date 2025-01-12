@@ -1,0 +1,28 @@
+services:
+  # backend:
+  #   image: node:23-alpine3.20
+  #   container_name: server
+  #   ports:
+  #     - "3001:3001"
+  #   build:
+  #     context: .
+  #     dockerfile: server.dockerfile
+  #   depends_on:
+  #     - postgres
+  #   env_file:
+  #     - .env
+
+  postgres:
+    image: postgres
+    container_name: runofresh_postgres_db
+    ports:
+      - "5432:5432" # Map the container's port 5432 to your local machine
+    environment:
+      POSTGRES_USER: postgres # Replace with your desired username
+      POSTGRES_PASSWORD: password # Replace with your desired password
+      POSTGRES_DB: runofresh_db # Replace with your desired database name
+    volumes:
+      - runofresh_postgres_data:/var/lib/postgresql/data # Persist data
+
+volumes:
+  runofresh_postgres_data:
